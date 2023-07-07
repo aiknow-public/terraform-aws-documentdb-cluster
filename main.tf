@@ -81,8 +81,6 @@ resource "aws_docdb_cluster" "default" {
   tags                            = module.this.tags
 }
 
-manage_master_user_password   = var.global_cluster_identifier == null && var.manage_master_user_password ? var.manage_master_user_password : null
-
 resource "aws_docdb_cluster_instance" "default" {
   count                        = module.this.enabled ? var.cluster_size : 0
   identifier                   = "${module.this.id}-${count.index + 1}"
